@@ -205,9 +205,9 @@ export function Challenge() {
                 >
                   {challenge.description}
                 </p>
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex flex-col sm:flex-row items-center justify-between text-xs">
                   <span
-                    className={`px-3 py-1 rounded-full ${
+                    className={`px-3 mb-2 sm:mb-0 py-1 rounded-full ${
                       theme === "dark"
                         ? "bg-slate-800 text-gray-300"
                         : "bg-gray-100 text-gray-600"
