@@ -2,10 +2,11 @@ import {
   getLifeExpectancyFromWHO,
   countryToISOCode,
   genderToWHOFormat,
-} from "./who-api";
+} from "@/app/services/who-api";
 
 export type Gender = "male" | "female" | "not_specified";
 
+// Fallback data in case WHO API fails or no data is available
 const fallbackLifeExpectancy: {
   [key: string]: { male: number; female: number };
 } = {
@@ -23,6 +24,7 @@ const fallbackLifeExpectancy: {
   Germany: { male: 79.1, female: 83.5 },
   "United States": { male: 76.1, female: 81.4 },
   Uruguay: { male: 73.4, female: 80.6 },
+  // ... add more countries as needed
 };
 
 export interface LifeExpectancyData {

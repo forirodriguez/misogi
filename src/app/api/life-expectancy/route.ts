@@ -1,5 +1,3 @@
-// api/life-expectancy/route.ts
-
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -45,7 +43,6 @@ export async function GET(request: Request) {
     }
 
     // Sort the facts by year descending to get the latest data
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sortedFacts = data.fact.sort((a: any, b: any) => {
       const yearA = parseInt(a.dim.YEAR);
       const yearB = parseInt(b.dim.YEAR);

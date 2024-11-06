@@ -87,6 +87,7 @@ export const countryToISOCode: { [key: string]: string } = {
   "United Kingdom": "GBR",
   "United States": "USA",
   Uruguay: "URY",
+  // ... add more countries as needed
 };
 
 export const genderToWHOFormat = (gender: string): "FMLE" | "MLE" | "BTSX" => {
