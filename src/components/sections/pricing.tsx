@@ -96,13 +96,6 @@ export function Pricing() {
               onCheckedChange={setAnnualBilling}
               className="data-[state=checked]:bg-purple-500"
             />
-            {annualBilling && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap"
-              ></motion.div>
-            )}
           </div>
           <span
             className={`ml-3 ${
@@ -117,6 +110,13 @@ export function Pricing() {
           {plans.map((plan, index) => {
             const isSelected = selectedPlan === plan.name;
             const isPopular = plan.popular;
+
+            // Calcula el porcentaje de ahorro para cada plan
+            const savingsPercentage = (
+              ((plan.monthlyPrice * 12 - plan.annualPrice) /
+                (plan.monthlyPrice * 12)) *
+              100
+            ).toFixed(2);
 
             return (
               <motion.div
@@ -193,7 +193,7 @@ export function Pricing() {
                             : "text-purple-600"
                         }`}
                       >
-                        Save 20%
+                        Ahorra {savingsPercentage}%
                       </span>
                     )}
                   </div>
@@ -229,7 +229,7 @@ export function Pricing() {
                         : "bg-gray-100 hover:bg-gray-200 text-gray-900"
                     }`}
                   >
-                    {isSelected ? "Current Plan" : "Choose Plan"}
+                    {isSelected ? "Plan Actual" : "Elegir Plan"}
                   </Button>
                 </Card>
               </motion.div>
