@@ -44,17 +44,21 @@ export function Header() {
         <Navigation className="hidden md:flex" />
 
         <div className="hidden md:flex items-center space-x-4">
-          <Button
-            variant="outline"
-            className="dark:border-gray-700 dark:hover:bg-gray-800"
-          >
-            Log In
-          </Button>
-          <Button
-            className={`bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400 text-white hover:opacity-90 transition-opacity`}
-          >
-            Sign Up
-          </Button>
+          <Link href="/auth/login">
+            <Button
+              variant="outline"
+              className="dark:border-gray-700 dark:hover:bg-gray-800"
+            >
+              Log In
+            </Button>
+          </Link>
+          <Link href="/auth/register">
+            <Button
+              className={`bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400 text-white hover:opacity-90 transition-opacity`}
+            >
+              Sign Up
+            </Button>
+          </Link>
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
