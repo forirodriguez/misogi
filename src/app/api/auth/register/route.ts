@@ -38,6 +38,8 @@ export async function POST(request: Request) {
       },
     });
 
+    console.log(user);
+
     return NextResponse.json(
       { message: "Usuario creado exitosamente" },
       { status: 201 }
