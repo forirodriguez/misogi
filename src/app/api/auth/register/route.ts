@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import * as z from "zod";
+import { Prisma } from "@prisma/client";
 
 const userSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -43,27 +44,23 @@ export async function POST(req: Request) {
     // Generate default avatar
     const defaultAvatar = getDefaultAvatar(name);
 
-    // Create user first
+    // Prepare user data
+    const userData: Prisma.UserCreateInput = {
+      name,
+      email,
+      password: hashedPassword,
+      image: defaultAvatar,
+      emailVerified: new Date(),
+    };
+
+    // Create user
     const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-        image: defaultAvatar,
-      },
+      data: userData,
       select: {
         id: true,
         name: true,
         email: true,
         image: true,
-      },
-    });
-
-    // Then update the emailVerified field
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        emailVerified: new Date(),
       },
     });
 
