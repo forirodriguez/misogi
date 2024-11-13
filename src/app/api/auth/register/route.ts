@@ -40,13 +40,19 @@ export async function POST(req: Request) {
         name,
         email,
         password: hashedPassword,
-        emailVerified: new Date(),
       },
       select: {
         id: true,
         name: true,
         email: true,
         image: true,
+      },
+    });
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        emailVerified: new Date(),
       },
     });
 
