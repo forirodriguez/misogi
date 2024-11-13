@@ -18,7 +18,7 @@ import {
   getLifeExpectancy,
   Gender,
   LifeExpectancyData,
-} from "@/app/lib/life-expectancy";
+} from "@/lib/life-expectancy";
 import { LifeVisualizer, LifeStats } from "./life-visualizer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/app/providers/theme-provider";

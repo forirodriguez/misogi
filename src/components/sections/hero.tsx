@@ -17,10 +17,6 @@ export function Hero() {
           muted
           playsInline
           onLoadedData={() => setIsVideoLoaded(true)}
-          onError={(e) => {
-            console.error("Error loading video:", e);
-            setIsVideoLoaded(true);
-          }}
           className={`object-cover w-full h-full brightness-50 transition-opacity duration-1000 ${
             isVideoLoaded ? "opacity-100" : "opacity-0"
           }`}
