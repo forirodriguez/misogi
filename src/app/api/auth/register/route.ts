@@ -9,6 +9,13 @@ const userSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
+function getDefaultAvatar(name: string) {
+  // Genera una URL de avatar usando el servicio UI Avatars
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(
+    name
+  )}&background=random`;
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -34,25 +41,23 @@ export async function POST(req: Request) {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 12);
 
+    // Generate default avatar
+    const defaultAvatar = getDefaultAvatar(name);
+
     // Create user
     const user = await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
+        emailVerified: new Date(),
+        image: defaultAvatar,
       },
       select: {
         id: true,
         name: true,
         email: true,
         image: true,
-      },
-    });
-
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        emailVerified: new Date(),
       },
     });
 
